@@ -1,9 +1,15 @@
 package br.com.murillo.cinefetch.framework.controllers.webClientConfig;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Configuration
 public class WebClientConfig {
   
-  private final WebClient webClient; 
+  @Bean
+  public WebClient.Builder webClintBuilder(){
+    return WebClient.builder();
+  }
 
 }
