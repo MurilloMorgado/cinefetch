@@ -1,18 +1,43 @@
 package br.com.murillo.cinefetch.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Movie {
 
+  @JsonProperty("Title")
   private String title;
+
+  @JsonProperty("Year")
   private String year;
+
+  @JsonProperty("Released")
   private String released;
+
+  @JsonProperty("Runtime")
   private String runTime;
+  
+  @JsonProperty("Genre")
   private String genre;
+  
+  @JsonProperty("Director")
   private String director;
+  
+  @JsonProperty("Writer")
   private String writer;
+  
+  @JsonProperty("Actors")
   private String actors;
+  
+  @JsonProperty("Plot")
   private String plot;
+  
+  @JsonProperty("Language")
   private String language;
+  
+  @JsonProperty("Country")
   private String country;
+  
+  @JsonProperty("Poster")
   private String poster;
 
   public Movie() {
@@ -131,5 +156,4 @@ public class Movie {
     this.poster = poster;
   }
 
-  
 }

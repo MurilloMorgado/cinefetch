@@ -1,4 +1,4 @@
-package br.com.murillo.cinefetch.framework.controllers.webClientConfig;
+package br.com.murillo.cinefetch.framework.webClientConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
