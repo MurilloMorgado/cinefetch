@@ -1,5 +1,7 @@
 package br.com.murillo.cinefetch.framework.controllers;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +20,19 @@ public class MovieController {
   private final MovieInputPort movieInputPort;
 
   @GetMapping
-  public ResponseEntity<Movie> findMovieByName(@RequestParam String movieName, @RequestParam String apikey){
-    
+  public ResponseEntity<Movie> findMovieByName(@RequestParam String movieName, @RequestParam String apikey) {
+
     Movie movie = movieInputPort.findMovieByName(movieName, apikey);
 
-    return ResponseEntity.ok().body(movie); 
+    return ResponseEntity.ok().body(movie);
+  }
+
+  @GetMapping(value = "/listar")
+  public ResponseEntity<List<Movie>> listarFilmes(@RequestParam String movieName, @RequestParam String apikey) {
+
+    List<Movie> listaFilmes = movieInputPort.listaDeFilmes(movieName, apikey);
+
+    return ResponseEntity.ok().body(listaFilmes);
   }
 
 }

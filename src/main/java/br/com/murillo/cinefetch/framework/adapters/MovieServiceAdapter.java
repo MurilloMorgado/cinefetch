@@ -1,5 +1,7 @@
 package br.com.murillo.cinefetch.framework.adapters;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -28,6 +30,23 @@ public class MovieServiceAdapter implements MovieOutputPort {
         .retrieve()
         .bodyToMono(Movie.class)
         .block();
+  }
+
+  @Override
+  public List<Movie> findListMovieByName(String movieName, String apikey) {
+
+    WebClient webClient = webClientBuilder.baseUrl(URL_API).build();
+
+    return webClient.get()
+        .uri(uriBuilder -> uriBuilder
+            .queryParam("apikey", apikey)
+            .queryParam("s", movieName)
+            .build())
+        .retrieve()
+        .bodyToFlux(Movie.class)
+        .collectList()
+        .block();
+
   }
 
 }

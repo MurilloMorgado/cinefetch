@@ -1,5 +1,7 @@
 package br.com.murillo.cinefetch.application.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.com.murillo.cinefetch.application.input.MovieInputPort;
@@ -17,6 +19,12 @@ public class MovieService implements MovieInputPort {
   public Movie findMovieByName(String movieName, String apikey) {
     Movie movie = movieServiceAdapter.findMovieByName(movieName, apikey);
     return movie;
+  }
+
+  @Override
+  public List<Movie> listaDeFilmes(String movieName, String apikey) {
+    List<Movie> listaDeFilmes = movieServiceAdapter.findListMovieByName(movieName, apikey);
+    return listaDeFilmes;
   }
 
 }
