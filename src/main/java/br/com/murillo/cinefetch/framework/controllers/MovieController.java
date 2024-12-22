@@ -18,9 +18,9 @@ public class MovieController {
   private final MovieInputPort movieInputPort;
 
   @GetMapping
-  public ResponseEntity<Movie> findMovieByName(@RequestParam String movieName){
+  public ResponseEntity<Movie> findMovieByName(@RequestParam String movieName, @RequestParam String apikey){
     
-    Movie movie = movieInputPort.findMovieByName(movieName);
+    Movie movie = movieInputPort.findMovieByName(movieName, apikey);
 
     return ResponseEntity.ok().body(movie); 
   }

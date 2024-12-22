@@ -9,7 +9,6 @@ import br.com.murillo.cinefetch.domain.models.Movie;
 @Service
 public class MovieServiceAdapter implements MovieOutputPort {
 
-  private static final String API_KEY = "d8c1a254";
   private static final String URL_API = "www.omdbapi.com";
   private final WebClient.Builder webClientBuilder;
 
@@ -18,13 +17,13 @@ public class MovieServiceAdapter implements MovieOutputPort {
   }
 
   @Override
-  public Movie findMovieByName(String movieName) {
+  public Movie findMovieByName(String movieName, String apikey) {
     WebClient webClient = webClientBuilder.baseUrl(URL_API).build();
 
     return webClient.get()
         .uri(uriBuilder -> uriBuilder
+            .queryParam("apikey", apikey)
             .queryParam("t", movieName)
-            .queryParam("apikey", API_KEY)
             .build())
         .retrieve()
         .bodyToMono(Movie.class)

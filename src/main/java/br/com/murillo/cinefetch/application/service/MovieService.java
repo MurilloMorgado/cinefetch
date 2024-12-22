@@ -14,8 +14,8 @@ public class MovieService implements MovieInputPort {
   private final MovieServiceAdapter movieServiceAdapter;
 
   @Override
-  public Movie findMovieByName(String movieName) {
-    Movie movie = movieServiceAdapter.findMovieByName(movieName);
+  public Movie findMovieByName(String movieName, String apikey) {
+    Movie movie = movieServiceAdapter.findMovieByName(movieName, apikey);
     return movie;
   }
 

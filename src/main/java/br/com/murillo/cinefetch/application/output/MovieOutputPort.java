@@ -4,6 +4,6 @@ import br.com.murillo.cinefetch.domain.models.Movie;
 
 public interface MovieOutputPort {
 
-  Movie findMovieByName(String movieName);
+  Movie findMovieByName(String movieName, String apikey);
   
 } 
