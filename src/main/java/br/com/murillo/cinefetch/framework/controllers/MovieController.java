@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.murillo.cinefetch.application.input.MovieInputPort;
 import br.com.murillo.cinefetch.domain.models.Movie;
+import br.com.murillo.cinefetch.domain.models.Search;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -28,9 +29,9 @@ public class MovieController {
   }
 
   @GetMapping(value = "/listar")
-  public ResponseEntity<List<Movie>> listarFilmes(@RequestParam String movieName, @RequestParam String apikey) {
+  public ResponseEntity<List<Search>> listarFilmes(@RequestParam String movieName, @RequestParam String apikey) {
 
-    List<Movie> listaFilmes = movieInputPort.listaDeFilmes(movieName, apikey);
+    List<Search> listaFilmes = movieInputPort.listaDeFilmes(movieName, apikey);
 
     return ResponseEntity.ok().body(listaFilmes);
   }

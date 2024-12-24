@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.murillo.cinefetch.application.input.MovieInputPort;
 import br.com.murillo.cinefetch.domain.models.Movie;
+import br.com.murillo.cinefetch.domain.models.Search;
 import br.com.murillo.cinefetch.framework.adapters.MovieServiceAdapter;
 import lombok.RequiredArgsConstructor;
 
@@ -22,8 +23,8 @@ public class MovieService implements MovieInputPort {
   }
 
   @Override
-  public List<Movie> listaDeFilmes(String movieName, String apikey) {
-    List<Movie> listaDeFilmes = movieServiceAdapter.findListMovieByName(movieName, apikey);
+  public List<Search> listaDeFilmes(String movieName, String apikey) {
+    List<Search> listaDeFilmes = movieServiceAdapter.findListMovieByName(movieName, apikey);
     return listaDeFilmes;
   }
 
