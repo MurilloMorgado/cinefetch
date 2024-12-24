@@ -7,6 +7,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import br.com.murillo.cinefetch.application.output.MovieOutputPort;
 import br.com.murillo.cinefetch.domain.models.Movie;
+import br.com.murillo.cinefetch.domain.models.Search;
+import br.com.murillo.cinefetch.domain.models.SearchResponse;
 
 @Service
 public class MovieServiceAdapter implements MovieOutputPort {
@@ -33,20 +35,32 @@ public class MovieServiceAdapter implements MovieOutputPort {
   }
 
   @Override
-  public List<Movie> findListMovieByName(String movieName, String apikey) {
+  public List<Search> findListMovieByName(String movieName, String apikey) {
 
     WebClient webClient = webClientBuilder.baseUrl(URL_API).build();
 
-    return webClient.get()
-        .uri(uriBuilder -> uriBuilder
-            .queryParam("apikey", apikey)
-            .queryParam("s", movieName)
-            .build())
-        .retrieve()
-        .bodyToFlux(Movie.class)
-        .collectList()
-        .block();
+    try {
+      SearchResponse searchResponse = webClient.get()
+          .uri(uriBuilder -> uriBuilder
+              .queryParam("apikey", apikey)
+              .queryParam("s", movieName)
+              .build())
+          .retrieve()
+          .bodyToMono(SearchResponse.class)
+          .block();
 
+      System.out.println(searchResponse);
+
+      List<Search> lista = searchResponse != null && searchResponse.getSearch() != null
+          ? searchResponse.getSearch()
+          : List.of();
+
+      return lista;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new InternalError("Falha ao listar os filmes: " + e.getMessage());
+    }
   }
 
 }
