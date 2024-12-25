@@ -28,4 +28,10 @@ public class MovieService implements MovieInputPort {
     return listaDeFilmes;
   }
 
+  @Override
+  public Movie findMovieById(String idMovie, String apikey) {
+    Movie movie = movieServiceAdapter.findMovieById(idMovie, apikey);
+    return movie;
+  }
+
 }

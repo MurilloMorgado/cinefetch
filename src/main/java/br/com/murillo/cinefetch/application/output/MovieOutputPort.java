@@ -10,5 +10,7 @@ public interface MovieOutputPort {
   List<Search> findListMovieByName(String movieName, String apikey);
 
   Movie findMovieByName(String movieName, String apikey);
+
+  Movie findMovieById(String idMovie, String apikey);
   
 } 
