@@ -63,4 +63,20 @@ public class MovieServiceAdapter implements MovieOutputPort {
     }
   }
 
+  @Override
+  public Movie findMovieById(String idMovie, String apikey) {
+
+    WebClient webClient = webClientBuilder.baseUrl(URL_API).build();
+
+    return webClient.get()
+        .uri(uriBuilder -> uriBuilder
+            .queryParam("apikey", apikey)
+            .queryParam("i", idMovie)
+            .build())
+        .retrieve()
+        .bodyToMono(Movie.class)
+        .block();
+
+  }
+
 }

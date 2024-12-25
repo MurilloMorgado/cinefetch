@@ -36,4 +36,13 @@ public class MovieController {
     return ResponseEntity.ok().body(listaFilmes);
   }
 
+  @GetMapping(value = "/id")
+  public ResponseEntity<Movie> findMovieById(@RequestParam String idMovie, @RequestParam String apikey) {
+
+    Movie movie = movieInputPort.findMovieById(idMovie, apikey);
+
+    return ResponseEntity.ok().body(movie);
+
+  }
+
 }

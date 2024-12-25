@@ -10,5 +10,7 @@ public interface MovieInputPort {
   List<Search> listaDeFilmes(String movieName, String apikey);
 
   Movie findMovieByName(String movieName, String apikey);
+
+  Movie findMovieById(String idMovie, String apikey);
   
 } 
